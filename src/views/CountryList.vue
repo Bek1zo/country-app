@@ -7,7 +7,8 @@ import Card from "../components/CountryList/Card.vue";
 
 const loading = inject("loading");
 
-const visibleCountries = ref([]);
+const visibleCountries = inject('visibleCountries')
+
 const countries = inject("countries");
 
 const page = ref(1);

@@ -30,6 +30,9 @@ provide("getFullCountriesList", getFullCountriesList)
 const countries = ref([]);
 provide("countries", countries);
 
+const visibleCountries = ref([]);
+provide("visibleCountries", visibleCountries);
+
 const loading = ref(false);
 provide("loading", loading)
 </script>

@@ -15,24 +15,6 @@ const getCountryCode = (name) => {
   return countryCode.filter((country) => country.name.toLowerCase().includes(name.toLowerCase()))[0];
 }
 
-// // Drag n drop
-//
-// let draggedItem = null;
-//
-// const onDragStart = (event, item) => {
-//   draggedItem = item;
-//   event.dataTransfer.effectAllowed = 'move';
-// };
-//
-// const onDrop = (event, targetItem) => {
-//
-//   const draggedIndex = props.countries.indexOf(draggedItem);
-//   const targetIndex = props.countries.indexOf(targetItem);
-//
-//   props.countries.splice(draggedIndex, 1);
-//   props.countries.splice(targetIndex, 0, draggedItem);
-// };
-
 </script>
 
 <template>

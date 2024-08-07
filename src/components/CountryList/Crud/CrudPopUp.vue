@@ -10,6 +10,8 @@ const props = defineProps({
 const loading = inject('loading')
 const selectedCountries = inject('selectedCountries')
 
+const visibleCountries = inject('visibleCountries')
+
 const emit = defineEmits(['close'])
 
 const deleteCountries = () => {
@@ -17,6 +19,7 @@ const deleteCountries = () => {
   emit('close')
 
   setTimeout(() => {
+    visibleCountries.value = visibleCountries.value.filter(country => !selectedCountries.value.includes(country));
     loading.value = false
     selectedCountries.value = []
   }, 1000)
