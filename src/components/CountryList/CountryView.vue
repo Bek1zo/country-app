@@ -2,6 +2,15 @@
 
 import {computed, inject, onMounted, ref, watch} from "vue";
 import router from "../../router/router.js";
+import CountryViewMap from "./CountryView/CountryViewMap.vue";
+
+const center = ref([40, 40]);
+const projection = ref('EPSG:4326');
+const zoom = ref(3);
+const rotation = ref(0);
+
+const format = inject('ol-format');
+const geoJson = new format.GeoJSON();
 
 
 const countries = inject("countries");
@@ -30,9 +39,7 @@ const getCurrentCountry = () => {
 <template>
   <div class="card-wrapper">
     <div class="card">
-      <div class="map">
-        map
-      </div>
+      <CountryViewMap/>
       <div class="card-info">
         <div class="header">
           {{ currentCountry.name }}

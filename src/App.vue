@@ -17,8 +17,6 @@ watch(router.currentRoute, (value) => {
   const isLogin = localStorage.getItem("isLogin");
   if (typeof null === typeof isLogin) {
     router.push('/auth')
-  } else {
-    router.push('/')
   }
 })
 

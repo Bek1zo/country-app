@@ -11,7 +11,7 @@ const visibleCountries = ref([]);
 const countries = inject("countries");
 
 const page = ref(1);
-const perPage = 13;
+const perPage = 25;
 
 
 
@@ -94,6 +94,25 @@ const selectedCountries = ref([]);
 provide('selectedCountries', selectedCountries)
 
 
+
+// Drag n drop
+
+let draggedItem = null;
+
+const onDragStart = (event, item) => {
+  draggedItem = item;
+  event.dataTransfer.effectAllowed = 'move';
+};
+
+const onDrop = (event, targetItem) => {
+
+  const draggedIndex = visibleCountries.value.indexOf(draggedItem);
+  const targetIndex = visibleCountries.value.indexOf(targetItem);
+
+  visibleCountries.value.splice(draggedIndex, 1);
+  visibleCountries.value.splice(targetIndex, 0, draggedItem);
+};
+
 </script>
 
 <template>
@@ -103,7 +122,11 @@ provide('selectedCountries', selectedCountries)
   <FilterBox :square-filter="squareFilter" :population-filter="populationFilter" @searchItems="searchItems()" @clearFilter="clearFilter()"/>
 
   <div class="country-list">
-    <Card :countries="visibleCountries"/>
+    <Card :country="country" :id="country.id" v-for="country in visibleCountries"
+          draggable="true"
+          @dragstart="onDragStart($event, country)"
+          @dragover.prevent
+          @drop="onDrop($event, country)"/>
     <Crud v-if="selectedCountries.length > 0"/>
   </div>
 </template>
@@ -128,8 +151,7 @@ provide('selectedCountries', selectedCountries)
   }
 
   .card {
-
-    all: unset;
+    background: #fff;
     cursor: pointer;
     display: flex;
     height: 110px;
