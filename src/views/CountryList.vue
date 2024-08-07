@@ -151,12 +151,13 @@ const onDrop = (event, targetItem) => {
   }
 
   .card {
+
     background: #fff;
     cursor: pointer;
     display: flex;
     height: 110px;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
@@ -180,8 +181,13 @@ const onDrop = (event, targetItem) => {
     input {
       width: 40px;
       height: 40px;
-
     }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
   }
 
 
